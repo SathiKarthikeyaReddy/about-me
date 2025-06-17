@@ -1,0 +1,58 @@
+.container_bg{
+background-size: contain;
+font-family: Arial, sans-serif;
+}
+
+h1{
+    font-weight: bold;
+    font-family: serif;
+}
+
+h2{
+    font-weight: bold;
+    font-family: serif;
+}
+
+h3{
+    font-weight: bold;
+    font-family: serif;}
+body {
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    
+}
+
+#top_head {
+    background-color: #dff0ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+li {
+    font-size: 16px;
+    margin: 4px 0;
+    color: lightskyblue;
+}
+
+#Projects, #Contact, #About, #Skills {
+    margin-top: 20px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #top_head, #About, #Skills, #Projects, #Contact {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  li {
+    font-size: 14px;
+  }
+}
