@@ -1,16 +1,41 @@
-About Me – Portfolio Page
-This repository contains the source code for a simple "About Me" web page, designed as a personal portfolio.
+# Sathi Karthikeya Reddy · Portfolio
 
-It includes basic HTML and CSS to display my:
+A clean, professional portfolio showcasing projects and skills. Built with plain HTML/CSS/JS for fast, reliable hosting anywhere.
 
-Personal information
+## Quick start
+- Open `index.html` in a browser, or use a simple static server.
 
-Educational background
+## Deploy (shareable link)
+Pick one option below.
 
-Technical skills
+### Option 1: Netlify Drop (fastest)
+- Go to `https://app.netlify.com/drop`.
+- Drag the entire project folder into the page.
+- You’ll get an instant, shareable URL (e.g., `https://your-site.netlify.app`).
 
-Contact details
+### Option 2: Netlify CLI
+- Install: `npm i -g netlify-cli`
+- In this folder: `netlify deploy` (choose a site, set publish dir to `.`)
+- For a permanent URL: `netlify deploy --prod`
 
-I initially created this page as a fun learning activity, but I plan to improve and expand it into a more polished, responsive, and visually appealing portfolio site over time.
+`netlify.toml` is included so no build step is needed.
 
-💡This is part of my ongoing journey toward becoming a full-stack web developer.
+### Option 3: Vercel
+- Install: `npm i -g vercel`
+- In this folder: `vercel --prod`
+- You’ll get a `vercel.app` link.
+
+`vercel.json` is included for a zero-config static deploy.
+
+### Option 4: Cloudflare Pages
+- Create a new project in Cloudflare Pages
+- Set the repository/folder, Framework preset: None
+- Build command: none, Output directory: `.`
+
+## Customize
+- Edit content in `index.html`
+- Tweak theme in `style.css`
+- Behavior in `script.js`
+
+## License
+Personal use permitted. Contact the author for other uses.
