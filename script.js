@@ -1,16 +1,5 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
 // Fade-in animation for cards on scroll
-const cards = document.querySelectorAll('.card, .project');
+const cards = document.querySelectorAll('.card, .project-card');
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
