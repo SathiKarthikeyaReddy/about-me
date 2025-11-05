@@ -4,92 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sathi Karthikeya Reddy - Portfolio</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Sathi Karthikeya Reddy</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#contact">Contact</a></li>
+<body data-bs-spy="scroll" data-bs-target="#navbar-main">
+
+    <!-- Navbar -->
+    <nav id="navbar-main" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sathi Karthikeya Reddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#summary">Summary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#competencies">Competencies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
-            </nav>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-primary text-white text-center p-5">
+        <div class="container">
+            <h1 class="display-4">SATHI KARTHIKEYA REDDY</h1>
+            <p class="lead">Aspiring Full Stack & Software Engineer</p>
+            <a href="https://www.linkedin.com/in/karthikeya-reddy-sathi" class="text-white fs-4" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <h1>Sathi Karthikeya Reddy</h1>
-            <p>Aspiring Full Stack Developer</p>
+    <main class="container mt-5">
+        <!-- Professional Summary -->
+        <section id="summary" class="mb-5">
+            <h2 class="mb-4 text-center">Professional Summary</h2>
+            <div class="card p-4">
+                <p class="lead">Motivated and detail-oriented B.Tech Computer Science Engineering student with a solid foundation in frontend development (HTML, CSS, JavaScript) and growing expertise in React and backend technologies. Skilled in problem-solving, collaborative teamwork, debugging, and applying user-centric design principles. Experienced in building responsive web applications and exploring cybersecurity concepts. Proficient in leveraging Generative AI tools for innovation and productivity. Actively strengthening knowledge in Data Structures, Algorithms, and Object-Oriented Programming. Seeking opportunities in software engineering, web development, or internships to contribute technical skills and creativity to impactful projects.</p>
+            </div>
         </section>
 
-        <div class="container">
-            <section id="about" class="card">
-                <h2>About Me</h2>
-                <p>I'm an aspiring full stack developer seeking opportunities for a good placement to showcase my skills. I am passionate about building beautiful and functional web applications.</p>
-            </section>
-
-            <section id="skills" class="card">
-                <h2>Skills</h2>
+        <!-- Education -->
+        <section id="education" class="mb-5">
+            <h2 class="mb-4 text-center">Education</h2>
+            <div class="card p-4">
+                <h4 class="mb-1">Dayananda Sagar University, Bangalore</h4>
+                <p class="text-muted">B.Tech in Computer Science Engineering | Aug 2022 – Aug 2026 (Expected)</p>
                 <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>Python</li>
-                    <li>C</li>
-                    <li>Linux</li>
-                    <li>SQL</li>
+                    <li>Focus Areas: Computer Science fundamentals, Software Development Methodologies, Web Technologies, Database Management Systems, Operating Systems</li>
+                    <li>Actively practicing Data Structures, Algorithms, and OOP concepts through coursework and personal projects</li>
                 </ul>
-            </section>
+            </div>
+        </section>
 
-            <section id="projects">
-                <h2>My Projects</h2>
-                <div class="projects-grid">
-                    <div class="project">
-                        <img src="https://via.placeholder.com/300x200" alt="Netflix Clone">
-                        <div class="project-content">
-                            <h3>Netflix Landing Page Clone</h3>
-                            <p>A clone of the Netflix landing page, built with HTML and CSS.</p>
-                        </div>
-                    </div>
-                    <div class="project">
-                        <img src="https://via.placeholder.com/300x200" alt="Restaurant Page">
-                        <div class="project-content">
-                            <h3>Restaurant Landing Page</h3>
-                            <p>A landing page for a restaurant, designed to be modern and responsive.</p>
+        <!-- Technical Skills -->
+        <section id="skills" class="mb-5">
+            <h2 class="mb-4 text-center">Technical Skills</h2>
+            <div class="card p-4">
+                <p><strong>Languages:</strong> <span class="badge bg-secondary">HTML</span> <span class="badge bg-secondary">CSS (Flexbox, Grid)</span> <span class="badge bg-secondary">JavaScript</span> <span class="badge bg-secondary">SQL</span> <span class="badge bg-secondary">Python</span> <span class="badge bg-secondary">C</span> <span class="badge bg-secondary">Shell Scripting</span></p>
+                <p><strong>Frameworks & Libraries:</strong> <span class="badge bg-secondary">Bootstrap</span> <span class="badge bg-secondary">React (Learning)</span></p>
+                <p><strong>Tools & Platforms:</strong> <span class="badge bg-secondary">Git</span> <span class="badge bg-secondary">GitHub</span> <span class="badge bg-secondary">Linux Basics</span> <span class="badge bg-secondary">Generative AI</span> <span class="badge bg-secondary">Maltego</span> <span class="badge bg-secondary">SET</span></p>
+                <p><strong>Concepts:</strong> <span class="badge bg-secondary">Frontend Development</span> <span class="badge bg-secondary">Backend (learning)</span> <span class="badge bg-secondary">DSA</span> <span class="badge bg-secondary">OOP</span> <span class="badge bg-secondary">UI/UX</span> <span class="badge bg-secondary">Prompt Engineering</span></p>
+            </div>
+        </section>
+
+        <!-- Key Competencies -->
+        <section id="competencies" class="mb-5">
+            <h2 class="mb-4 text-center">Key Competencies</h2>
+            <div class="card p-4 text-center">
+                <span class="badge bg-info m-1">Problem Solving</span> <span class="badge bg-info m-1">Adaptability</span> <span class="badge bg-info m-1">Team Collaboration</span> <span class="badge bg-info m-1">Communication</span> <span class="badge bg-info m-1">Debugging</span> <span class="badge bg-info m-1">UI/UX Awareness</span> <span class="badge bg-info m-1">Analytical Thinking</span> <span class="badge bg-info m-1">Fast Learning</span>
+            </div>
+        </section>
+
+        <!-- Project Experience -->
+        <section id="projects" class="mb-5">
+            <h2 class="mb-4 text-center">Project Experience</h2>
+            <div class="row">
+                <!-- Project Card 1 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-tv"></i> Netflix UI Clone</h5>
+                            <p class="card-text">A responsive Netflix homepage built with HTML, CSS, and JavaScript, ensuring cross-device compatibility.</p>
+                            <div class="mt-auto text-center">
+                                <a href="https://karthikeya0609.ccbp.tech" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section id="education" class="card">
-                <h2>Education</h2>
-                <div class="education-item">
-                    <h3>Bachelor of Technology, Computer Science</h3>
-                    <p>Vellore Institute of Technology | 2021 - 2025</p>
+                <!-- Project Card 2 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-utensils"></i> Restaurant Landing Page</h5>
+                            <p class="card-text">Created a modern static landing page with responsive design and aesthetic UI.</p>
+                            <div class="mt-auto text-center">
+                                <a href="https://fdmnchlndgpage.ccbp.tech" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
+                <!-- Project Card 3 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-music"></i> Spotify Open Page</h5>
+                            <p class="card-text">Developed a landing page replicating Spotify’s UI with a focus on accuracy and usability.</p>
+                             <div class="mt-auto text-center">
+                                <a href="https://musicapp06.ccbp.tech" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 4 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-home"></i> Real Estate Landing Page</h5>
+                            <p class="card-text">Designed and implemented an interactive real estate website frontend.</p>
+                            <div class="mt-auto text-center">
+                                <a href="https://findhomes.ccbp.tech" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 5 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-shield-alt"></i> Maltego Email Threat Investigation</h5>
+                            <p class="card-text">Analyzed email headers using Maltego to detect phishing attempts and suspicious activity. See LinkedIn for details.</p>
+                            <div class="mt-auto text-center">
+                               <a href="https://www.linkedin.com/in/karthikeya-reddy-sathi" class="btn btn-primary" target="_blank"><i class="fab fa-linkedin"></i> View on LinkedIn</a>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <section id="contact" class="card">
-                <h2>Contact Me</h2>
-                <form action="mailto:sathikarthikeyareddy@gmail.com" method="post" enctype="text/plain">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </section>
-        </div>
+        <!-- Certifications -->
+        <section id="certifications" class="mb-5">
+            <h2 class="mb-4 text-center">Certifications</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Responsive Web Design (HTML, CSS, Flexbox, Bootstrap) – Nxtwave CCBP Academy</li>
+                <li class="list-group-item">JavaScript Essentials – Nxtwave CCBP Academy</li>
+                <li class="list-group-item">Introduction to Databases (SQLite) – Nxtwave CCBP Academy</li>
+                <li class="list-group-item">Python Programming & Problem Solving – Nxtwave CCBP Academy</li>
+                <li class="list-group-item">Linux Foundation Course – Infosys Springboard</li>
+                <li class="list-group-item">Basics of Shell Scripting – Infosys Springboard</li>
+            </ul>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="mb-5">
+            <h2 class="mb-4 text-center">Contact</h2>
+            <div class="card p-4 text-center">
+                <p><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka - 562112</p>
+                <p><i class="fas fa-phone"></i> +91 8341233162</p>
+                <p><i class="fas fa-envelope"></i> sathikarthikeyareddy@gmail.com</p>
+                <p><a href="https://www.linkedin.com/in/karthikeya-reddy-sathi" class="text-decoration-none" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+            </div>
+        </section>
+
     </main>
 
-    <footer>
+    <footer class="text-center p-3 bg-dark text-white">
         <p>&copy; 2024 Sathi Karthikeya Reddy. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
