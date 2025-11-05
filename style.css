@@ -1,59 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body {
-    font-family: 'Lato', sans-serif;
-    scroll-behavior: smooth;
+:root {
+    --hue: 210;
+    --primary-color-light: hsl(var(--hue), 85%, 55%);
+    --secondary-color-light: hsl(var(--hue), 75%, 45%);
+    --background-color-light: hsl(var(--hue), 40%, 98%);
+    --card-bg-color-light: hsl(0, 0%, 100%);
+    --text-color-light: hsl(var(--hue), 20%, 20%);
+    --muted-text-color-light: hsl(var(--hue), 20%, 45%);
+    --shadow-color-light: 220, 40%, 80%;
+
+    --primary-color-dark: hsl(var(--hue), 75%, 65%);
+    --secondary-color-dark: hsl(var(--hue), 65%, 55%);
+    --background-color-dark: hsl(var(--hue), 25%, 12%);
+    --card-bg-color-dark: hsl(var(--hue), 25%, 18%);
+    --text-color-dark: hsl(var(--hue), 20%, 90%);
+    --muted-text-color-dark: hsl(var(--hue), 20%, 70%);
+    --shadow-color-dark: 220, 30%, 5%;
+
+    --transition-speed: 0.4s;
 }
 
-h1, h2, h3, h4, h5, h6, .navbar-brand {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+body[data-theme="light"] {
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+    --background-color: var(--background-color-light);
+    --card-bg-color: var(--card-bg-color-light);
+    --text-color: var(--text-color-light);
+    --muted-text-color: var(--muted-text-color-light);
+    --shadow-color: var(--shadow-color-light);
+}
+
+body[data-theme="dark"] {
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --background-color: var(--background-color-dark);
+    --card-bg-color: var(--card-bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --muted-text-color: var(--muted-text-color-dark);
+    --shadow-color: var(--shadow-color-dark);
 }
 
 .navbar {
-    transition: background-color 0.3s ease;
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 10px hsla(var(--shadow-color), 0.5);
+    transition: background-color var(--transition-speed) ease;
 }
 
-.project-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.navbar .nav-link, .navbar .navbar-brand {
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
     border: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px hsla(var(--shadow-color), 0.4);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
 }
 
-.project-card:hover {
+.card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px hsla(var(--shadow-color), 0.6);
 }
 
-.project-card .card-title i {
-    margin-right: 10px;
-    color: #0d6efd; /* Bootstrap Primary */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
-section {
-    padding-top: 60px;
-    padding-bottom: 60px;
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 .badge {
-    font-size: 0.9em;
-    padding: 0.5em 0.9em;
+    transition: background-color var(--transition-speed) ease;
+}
+
+/* Animations */
+.animated-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animated-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .list-group-item {
-    border-left: 3px solid transparent;
-    transition: border-left-color 0.3s ease;
+    background-color: transparent;
+    border-color: hsla(var(--shadow-color), 0.5);
+    color: var(--text-color);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
-
 .list-group-item:hover {
-    border-left-color: #0d6efd;
-}
-
-#contact .card p i {
-    margin-right: 10px;
-}
-
-.navbar .nav-link.active {
-    color: #fff !important;
-    font-weight: bold;
+    background-color: hsla(var(--hue), 75%, 55%, 0.1);
 }
