@@ -115,6 +115,7 @@ header::before {
 
 header .display-4 {
     background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
@@ -278,4 +279,202 @@ footer {
 .project-card:hover .custom-btn {
     opacity: 1;
     background-color: var(--primary-hover);
+}
+
+/* =========================================================================
+   NEW ADVANCED INTERACTIONS & ANIMATIONS
+   ========================================================================= */
+
+/* Soft Backgrounds for Badges */
+.bg-accent-soft {
+    background: rgba(16, 185, 129, 0.1) !important;
+}
+
+.bg-warning-soft {
+    background: rgba(245, 158, 11, 0.1) !important;
+}
+
+.bg-danger-soft {
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+
+.border-accent {
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.border-warning {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.border-danger {
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.text-accent {
+    color: #34d399 !important;
+}
+
+.text-warning {
+    color: #fbbf24 !important;
+}
+
+.text-danger {
+    color: #f87171 !important;
+}
+
+.text-info {
+    color: #38bdf8 !important;
+}
+
+.text-success {
+    color: #4ade80 !important;
+}
+
+body[data-theme="light"] .text-accent {
+    color: #059669 !important;
+}
+
+body[data-theme="light"] .text-warning {
+    color: #d97706 !important;
+}
+
+body[data-theme="light"] .text-danger {
+    color: #dc2626 !important;
+}
+
+/* Competency Cards */
+.competency-card {
+    background: var(--surface-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    text-align: center;
+    box-shadow: 0 4px 15px -5px var(--shadow-color);
+    transition: box-shadow var(--transition-snappy), border-color var(--transition-snappy);
+    cursor: default;
+    will-change: transform;
+}
+
+.competency-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 15px 35px -5px rgba(59, 130, 246, 0.2);
+}
+
+/* Base Stagger Animation Classes */
+.stagger-child {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow var(--transition-snappy),
+        border-color var(--transition-snappy);
+}
+
+/* When parent triggers visibility, siblings animate via JS addition of class */
+.stagger-child.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Stagger Delays mapped to DOM nodes via logic if needed, or static ones */
+.animation-delay-1 {
+    transition-delay: 0.1s;
+}
+
+.animation-delay-2 {
+    transition-delay: 0.2s;
+}
+
+.animation-delay-3 {
+    transition-delay: 0.3s;
+}
+
+.animation-delay-4 {
+    transition-delay: 0.4s;
+}
+
+.animation-delay-5 {
+    transition-delay: 0.5s;
+}
+
+.animation-delay-6 {
+    transition-delay: 0.6s;
+}
+
+.animation-delay-7 {
+    transition-delay: 0.7s;
+}
+
+.animation-delay-8 {
+    transition-delay: 0.8s;
+}
+
+/* Note: we wipe the transition-delay once visible so hover transforms remain instant */
+.stagger-child.is-visible:hover {
+    transition-delay: 0s;
+}
+
+/* Continuous Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Once visible, the continuous float animation runs via the i tags */
+.competency-card.is-visible i {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animation-delay-2 i {
+    animation-delay: 0.5s !important;
+}
+
+.animation-delay-3 i {
+    animation-delay: 1.0s !important;
+}
+
+.animation-delay-4 i {
+    animation-delay: 1.5s !important;
+}
+
+.animation-delay-5 i {
+    animation-delay: 2.0s !important;
+}
+
+.animation-delay-6 i {
+    animation-delay: 2.5s !important;
+}
+
+.animation-delay-7 i {
+    animation-delay: 0.7s !important;
+}
+
+.animation-delay-8 i {
+    animation-delay: 1.2s !important;
+}
+
+/* 3D Tilt Setup Container */
+.tilt-effect {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.tilt-effect>* {
+    transform: translateZ(30px);
+    /* Push inner content firmly towards screen on hover */
 }

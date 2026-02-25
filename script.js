@@ -52,10 +52,22 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            // Add a slight stagger delay if multiple elements enter at once
+
+            // Check if this section is a stagger parent
+            if (entry.target.classList.contains('stagger-parent')) {
+                const children = entry.target.querySelectorAll('.stagger-child');
+                children.forEach((child, i) => {
+                    setTimeout(() => {
+                        child.classList.add('is-visible');
+                    }, i * 150); // 150ms stagger
+                });
+            }
+
+            // Standard section reveal
             setTimeout(() => {
                 entry.target.classList.add('is-visible');
-            }, index * 100);
+            }, entry.target.classList.contains('stagger-parent') ? 0 : index * 100);
+
             observer.unobserve(entry.target);
         }
     });
@@ -63,6 +75,36 @@ const observer = new IntersectionObserver((entries) => {
 
 animatedSections.forEach(section => {
     observer.observe(section);
+});
+
+// Vanilla JS 3D Tilt Effect for premium interactivity
+const tiltElements = document.querySelectorAll('.tilt-effect');
+
+tiltElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+
+        // Calculate mouse position relative to the center of the element
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Calculate tilt amounts (max 10 degrees)
+        const tiltX = ((y - centerY) / centerY) * -10;
+        const tiltY = ((x - centerX) / centerX) * 10;
+
+        // Apply transform
+        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+        el.style.transition = 'none'; // Remove transition for instant following
+    });
+
+    // Reset transform on mouse leave
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        el.style.transition = 'transform 0.5s ease-out'; // Smooth reset
+    });
 });
 
 // Smooth scroll implementation for navbar links
