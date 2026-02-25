@@ -152,8 +152,8 @@ revealTexts.forEach(block => {
     const text = block.textContent.trim();
     if (!text) return;
 
-    // Split by spaces
-    const words = text.split(/\s+/);
+    // Filter out any empty strings from multiple spaces/newlines
+    const words = text.split(/\s+/).filter(w => w.length > 0);
 
     // Clear original text
     block.innerHTML = '';
@@ -161,7 +161,6 @@ revealTexts.forEach(block => {
     words.forEach((word, index) => {
         const span = document.createElement('span');
         span.classList.add('word');
-        // Add staggered delay inline based on word position
         // Reduced to 15ms so long paragraphs (like Summary) appear quickly and remain readable
         span.style.transitionDelay = `${index * 15}ms`;
         span.textContent = word;
