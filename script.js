@@ -127,3 +127,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// =========================================================================
+// NEW TEXT INTERACTIVITY & SPOTLIGHT LOGIC
+// =========================================================================
+
+// Global Mouse Spotlight Tracker
+const spotlight = document.querySelector('.mouse-spotlight');
+
+if (spotlight) {
+    window.addEventListener('mousemove', (e) => {
+        // Use CSS variables to smoothly update the radial gradient position
+        spotlight.style.setProperty('--mouse-x', `${e.clientX}px`);
+        spotlight.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+}
+
+// Split Reveal Text into individual word spans for sequential animation
+const revealTexts = document.querySelectorAll('.reveal-text');
+
+revealTexts.forEach(block => {
+    // Split by spaces, wrap in spans
+    const text = block.textContent;
+    const words = text.split(' ');
+
+    // Clear original text
+    block.innerHTML = '';
+
+    words.forEach((word, index) => {
+        const span = document.createElement('span');
+        span.classList.add('word');
+        // Add staggered delay inline based on word position
+        span.style.transitionDelay = `${index * 40}ms`;
+        span.textContent = word + ' ';
+        block.appendChild(span);
+    });
+
+    // Add to intersection observer so it triggers when scrolled into view
+    observer.observe(block);
+});

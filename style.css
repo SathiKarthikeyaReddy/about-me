@@ -10,23 +10,26 @@
     --accent: #10b981;
     /* Emerald 500 */
 
-    /* Dark Theme (Default) */
-    --bg-dark: #0f172a;
-    /* Slate 900 */
-    --surface-dark: rgba(30, 41, 59, 0.6);
-    /* Slate 800 + Opacity */
-    --text-dark: #f8fafc;
+    /* Dark Theme (Midnight Indigo) */
+    --bg-dark: #070b14;
+    /* Deep, rich midnight */
+    --surface-dark: rgba(18, 25, 43, 0.65);
+    /* Indigo tinted surface */
+    --text-dark: #f1f5f9;
     /* Slate 50 */
-    --text-muted-dark: #94a3b8;
-    /* Slate 400 */
-    --border-dark: rgba(255, 255, 255, 0.05);
+    --text-muted-dark: #8b9bb4;
+    /* Soft blue-gray */
+    --border-dark: rgba(255, 255, 255, 0.06);
 
-    /* Light Theme */
-    --bg-light: #f8fafc;
-    --surface-light: rgba(255, 255, 255, 0.8);
-    --text-light: #0f172a;
-    --text-muted-light: #475569;
-    --border-light: rgba(15, 23, 42, 0.1);
+    /* Light Theme (Pearl / Off-White) */
+    --bg-light: #faf9f6;
+    /* Pearl / Editorial off-white */
+    --surface-light: rgba(255, 255, 255, 0.85);
+    --text-light: #1e293b;
+    /* Slate 800 */
+    --text-muted-light: #64748b;
+    /* Slate 500 */
+    --border-light: rgba(15, 23, 42, 0.08);
 
     --transition-snappy: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -477,4 +480,117 @@ body[data-theme="light"] .text-danger {
 .tilt-effect>* {
     transform: translateZ(30px);
     /* Push inner content firmly towards screen on hover */
+}
+
+/* =========================================================================
+   NEW TEXT INTERACTIVITY & PROJECT CARD GLARE (INDUSTRY STANDARD)
+   ========================================================================= */
+
+/* Hero Name Interactive Gradient */
+.hero-name-interactive {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #60a5fa, #3b82f6, #10b981, #60a5fa);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position 0.5s ease;
+    cursor: default;
+}
+
+.hero-name-interactive:hover {
+    background-position: 100% 50%;
+}
+
+/* Staggered Word Reveal (Triggered via JS) */
+.reveal-text {
+    opacity: 1 !important;
+    /* Managed by children */
+    visibility: visible;
+}
+
+.reveal-text .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: pre;
+    /* preserve spaces if any */
+}
+
+.reveal-text.is-visible .word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced Project Card Micro-Interactions */
+.project-card {
+    position: relative;
+    overflow: hidden !important;
+    /* Required to clip the glare */
+    transform-style: preserve-3d;
+}
+
+/* Glossy Glare Overlay */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.7s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.project-card:hover::before {
+    left: 150%;
+}
+
+/* Title and Description Shifts on Hover */
+.project-card .card-body {
+    transform: translateZ(20px);
+    transition: transform var(--transition-snappy);
+}
+
+.project-card .card-title {
+    transition: transform var(--transition-snappy), color var(--transition-snappy);
+}
+
+.project-card .card-text {
+    transition: transform var(--transition-snappy), opacity var(--transition-snappy);
+    opacity: 0.85;
+}
+
+/* User Request: Effects to description texts inside card containers */
+.project-card:hover .card-title {
+    transform: translateY(-3px) scale(1.02);
+    color: var(--primary);
+}
+
+.project-card:hover .card-text {
+    transform: translateY(-2px);
+    opacity: 1;
+    color: var(--text-color);
+    /* Brighten up the description text */
+}
+
+/* Background Spotlight Mouse Tracker */
+.mouse-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.05), transparent 40%);
+}
+
+body[data-theme="light"] .mouse-spotlight {
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.03), transparent 40%);
 }
