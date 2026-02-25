@@ -515,8 +515,6 @@ body[data-theme="light"] .text-danger {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    white-space: pre;
-    /* preserve spaces if any */
 }
 
 .reveal-text.is-visible .word {
@@ -577,6 +575,17 @@ body[data-theme="light"] .text-danger {
     opacity: 1;
     color: var(--text-color);
     /* Brighten up the description text */
+}
+
+/* Safe Interactive List/Paragraph Items (For Contact & Certifications) */
+.interactive-item {
+    transition: transform var(--transition-snappy), color var(--transition-snappy);
+    transform-origin: left center;
+}
+
+.interactive-item:hover {
+    transform: translateX(8px);
+    color: var(--primary);
 }
 
 /* Background Spotlight Mouse Tracker */

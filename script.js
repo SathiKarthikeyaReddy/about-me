@@ -144,12 +144,16 @@ if (spotlight) {
 }
 
 // Split Reveal Text into individual word spans for sequential animation
+// We will only do this for elements without complex inner HTML to avoid mangling tags.
 const revealTexts = document.querySelectorAll('.reveal-text');
 
 revealTexts.forEach(block => {
-    // Split by spaces, wrap in spans
-    const text = block.textContent;
-    const words = text.split(' ');
+    // Only process if it's mostly text, or accept that innerHTML will be lost.
+    const text = block.textContent.trim();
+    if (!text) return;
+
+    // Split by spaces
+    const words = text.split(/\s+/);
 
     // Clear original text
     block.innerHTML = '';
@@ -158,9 +162,12 @@ revealTexts.forEach(block => {
         const span = document.createElement('span');
         span.classList.add('word');
         // Add staggered delay inline based on word position
-        span.style.transitionDelay = `${index * 40}ms`;
-        span.textContent = word + ' ';
+        // Reduced to 15ms so long paragraphs (like Summary) appear quickly and remain readable
+        span.style.transitionDelay = `${index * 15}ms`;
+        span.textContent = word;
         block.appendChild(span);
+        // Add space separately so browser can handle line-wrapping naturally
+        block.appendChild(document.createTextNode(' '));
     });
 
     // Add to intersection observer so it triggers when scrolled into view
