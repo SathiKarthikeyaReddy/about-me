@@ -197,6 +197,10 @@ section:hover h2::after {
     line-height: 1.7;
 }
 
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
 /* Badges */
 .badge {
     background: rgba(59, 130, 246, 0.1) !important;
