@@ -15,7 +15,7 @@ if (currentTheme) {
         toggleIcon.classList.add(sunIcon);
     }
 } else {
-    // Default to dark theme for the new premium feel
+    // Default to dark theme for the premium feel
     document.body.setAttribute('data-theme', 'dark');
     toggleIcon.classList.add(moonIcon);
 }
@@ -41,17 +41,25 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', newTheme);
 });
 
+// Mouse spotlight effect
+const spotlight = document.querySelector('.mouse-spotlight');
+document.addEventListener('mousemove', (e) => {
+    spotlight.style.left = e.clientX + 'px';
+    spotlight.style.top = e.clientY + 'px';
+});
+
 // Advanced On-scroll animations using Intersection Observer
 const animatedSections = document.querySelectorAll('.animated-section');
 
 const observerOptions = {
-    threshold: 0.12,
-    rootMargin: "0px 0px -50px 0px" // Trigger slightly before it hits the viewport bottom
+    threshold: 0.08,
+    rootMargin: "0px 0px -50px 0px"
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
 
             // Check if this section is a stagger parent
             if (entry.target.classList.contains('stagger-parent')) {
@@ -59,14 +67,9 @@ const observer = new IntersectionObserver((entries) => {
                 children.forEach((child, i) => {
                     setTimeout(() => {
                         child.classList.add('is-visible');
-                    }, i * 150); // 150ms stagger
+                    }, i * 120); // 120ms stagger
                 });
             }
-
-            // Standard section reveal
-            setTimeout(() => {
-                entry.target.classList.add('is-visible');
-            }, entry.target.classList.contains('stagger-parent') ? 0 : index * 100);
 
             observer.unobserve(entry.target);
         }
@@ -77,98 +80,113 @@ animatedSections.forEach(section => {
     observer.observe(section);
 });
 
-// Vanilla JS 3D Tilt Effect for premium interactivity
-const tiltElements = document.querySelectorAll('.tilt-effect');
-
-tiltElements.forEach(el => {
-    el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-
-        // Calculate mouse position relative to the center of the element
+// Tilt effect on cards
+document.querySelectorAll('.tilt-effect').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-
-        // Calculate tilt amounts (max 10 degrees)
-        const tiltX = ((y - centerY) / centerY) * -10;
-        const tiltY = ((x - centerX) / centerX) * 10;
-
-        // Apply transform
-        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
-        el.style.transition = 'none'; // Remove transition for instant following
+        const rotateX = (y - centerY) / 18;
+        const rotateY = (centerX - x) / 18;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
 
-    // Reset transform on mouse leave
-    el.addEventListener('mouseleave', () => {
-        el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-        el.style.transition = 'transform 0.5s ease-out'; // Smooth reset
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
 });
 
-// Smooth scroll implementation for navbar links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
+// ─── Project Cards Renderer ───────────────────────────────────────────────────
+function renderProjectCards() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid || typeof projectsData === 'undefined') return;
 
-        if (targetElement) {
-            // Offset for sticky navbar
-            const headerOffset = 80;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    Object.entries(projectsData).forEach(([key, project], index) => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 col-lg-4 stagger-child';
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        }
+        const liveBtn = project.liveLink
+            ? `<a href="${project.liveLink}" target="_blank" class="btn btn-sm btn-primary interactive-item me-2">
+                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+               </a>`
+            : '';
+
+        const githubBtn = project.githubLink
+            ? `<a href="${project.githubLink}" target="_blank" class="btn btn-sm btn-outline-secondary interactive-item">
+                    <i class="fab fa-github me-1"></i>GitHub
+               </a>`
+            : '';
+
+        const techBadges = project.techStack
+            .slice(0, 4)
+            .map(t => `<span class="tech-badge">${t}</span>`)
+            .join('');
+
+        const moreBadge = project.techStack.length > 4
+            ? `<span class="tech-badge tech-badge-more">+${project.techStack.length - 4} more</span>`
+            : '';
+
+        col.innerHTML = `
+            <div class="card project-card h-100 tilt-effect interactive-item" data-project-key="${key}">
+                <div class="project-thumbnail" style="background: ${project.thumbnailBg};">
+                    <i class="fas ${project.icon} project-icon"></i>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-1">${project.title}</h5>
+                    <p class="card-subtitle text-muted small mb-2">${project.subtitle}</p>
+                    <p class="card-text small flex-grow-1">${project.description.substring(0, 120)}...</p>
+                    <div class="tech-stack-row mb-3">${techBadges}${moreBadge}</div>
+                    <div class="project-actions d-flex align-items-center">
+                        ${liveBtn}
+                        ${githubBtn}
+                        <button class="btn btn-sm btn-link ms-auto p-0 details-btn" data-key="${key}">
+                            Details <i class="fas fa-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        grid.appendChild(col);
     });
-});
 
-// =========================================================================
-// NEW TEXT INTERACTIVITY & SPOTLIGHT LOGIC
-// =========================================================================
-
-// Global Mouse Spotlight Tracker
-const spotlight = document.querySelector('.mouse-spotlight');
-
-if (spotlight) {
-    window.addEventListener('mousemove', (e) => {
-        // Use CSS variables to smoothly update the radial gradient position
-        spotlight.style.setProperty('--mouse-x', `${e.clientX}px`);
-        spotlight.style.setProperty('--mouse-y', `${e.clientY}px`);
+    // Re-attach tilt effect to newly rendered cards
+    grid.querySelectorAll('.tilt-effect').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 18;
+            const rotateY = (centerX - x) / 18;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
     });
+
+    // Details button → navigate to project-details page
+    grid.querySelectorAll('.details-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const key = e.currentTarget.getAttribute('data-key');
+            window.location.href = `project-details.html?project=${key}`;
+        });
+    });
+
+    // Trigger stagger animation for project cards
+    const projectSection = document.getElementById('projects');
+    if (projectSection && projectSection.classList.contains('is-visible')) {
+        grid.querySelectorAll('.stagger-child').forEach((child, i) => {
+            setTimeout(() => child.classList.add('is-visible'), i * 100);
+        });
+    }
 }
 
-// Split Reveal Text into individual word spans for sequential animation
-// We will only do this for elements without complex inner HTML to avoid mangling tags.
-const revealTexts = document.querySelectorAll('.reveal-text');
-
-revealTexts.forEach(block => {
-    // Only process if it's mostly text, or accept that innerHTML will be lost.
-    const text = block.textContent.trim();
-    if (!text) return;
-
-    // Filter out any empty strings from multiple spaces/newlines
-    const words = text.split(/\s+/).filter(w => w.length > 0);
-
-    // Clear original text
-    block.innerHTML = '';
-
-    words.forEach((word, index) => {
-        const span = document.createElement('span');
-        span.classList.add('word');
-        // Reduced to 15ms so long paragraphs (like Summary) appear quickly and remain readable
-        span.style.transitionDelay = `${index * 15}ms`;
-        span.textContent = word;
-        block.appendChild(span);
-        // Add space separately so browser can handle line-wrapping naturally
-        block.appendChild(document.createTextNode(' '));
-    });
-
-    // Add to intersection observer so it triggers when scrolled into view
-    observer.observe(block);
-});
+// Initialise project cards on DOM load
+document.addEventListener('DOMContentLoaded', renderProjectCards);
+// Fallback for already-loaded documents
+if (document.readyState !== 'loading') renderProjectCards();

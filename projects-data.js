@@ -1,4 +1,93 @@
 const projectsData = {
+    "spend-anomaly-alert": {
+        title: "Spend Anomaly Alert System",
+        subtitle: "AI-Powered Corporate Finance Intelligence",
+        icon: "fa-chart-line",
+        description: "An intelligent corporate finance tool that ingests recurring expense data, calculates category-level baselines, and autonomously flags anomalous spending using Z-score statistical variance modeling. Generates polished executive-ready weekly digest reports via Gemini AI.",
+        techStack: ["Python", "FastAPI", "React", "Vite", "Recharts", "SQLite", "Gemini API", "html2pdf.js"],
+        features: [
+            "Z-score statistical anomaly detection with a cold-start guard (requires ≥3 historical records per category).",
+            "Automatic AI-generated executive digest summarizing weekly spend findings.",
+            "Drag-and-drop CSV upload with real-time KPI dashboard.",
+            "Client-side PDF export requiring no server-side C libraries.",
+            "Robust fallback template mode — works seamlessly without API keys."
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/spend-anomaly-alert",
+        thumbnailBg: "linear-gradient(135deg, #f59e0b, #b45309)"
+    },
+    "sql-bi-reporter": {
+        title: "SQL BI Reporter",
+        subtitle: "Natural Language Business Intelligence Tool",
+        icon: "fa-database",
+        description: "A self-contained BI tool that enables non-technical stakeholders to query realistic business datasets using plain English. It translates natural language into safe, sanitized SQL via Gemini AI, executes it against a SQLite database, and auto-generates conversational business summaries — all with persistent query history.",
+        techStack: ["Python", "FastAPI", "React", "Vite", "SQLite", "Gemini API", "pandas"],
+        features: [
+            "Natural language → SQL translation powered by Gemini AI.",
+            "SQL injection protection via allowlist validation and schema grounding.",
+            "Auto-generated conversational business summaries of query results.",
+            "Persistent query history log across sessions.",
+            "Pre-seeded realistic business datasets (sales, orders, expenses).",
+            "Zero API keys required — fully functional fallback mode included."
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/sql-bi-reporter",
+        thumbnailBg: "linear-gradient(135deg, #3b82f6, #1d4ed8)"
+    },
+    "personal-finance-analyser": {
+        title: "Personal Finance Analyser",
+        subtitle: "AI-Categorised Spending Dashboard",
+        icon: "fa-wallet",
+        description: "A data-dense web application that ingests bank transaction CSVs and leverages a pluggable categorisation engine to identify spending patterns. Provides actionable financial intelligence by classifying transactions, computing month-over-month trends, and flagging statistical anomalies in spending behaviour.",
+        techStack: ["Python", "FastAPI", "React", "Vite", "Recharts", "SQLite", "pandas", "Gemini API"],
+        features: [
+            "Pluggable categorisation engine — swap between zero-dependency rule-based or LLM-powered categoriser.",
+            "Month-over-month trend analysis with interactive Recharts visualisations.",
+            "Statistical anomaly detection on personal spending patterns.",
+            "CSV drag-and-drop ingestion with automatic field mapping.",
+            "Persistent SQLite storage — transactions survive browser refresh.",
+            "Clone and run immediately — no API keys needed."
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/personal-finance-analyser",
+        thumbnailBg: "linear-gradient(135deg, #10b981, #047857)"
+    },
+    "wobb-vibe-coder-premium": {
+        title: "Wobb Vibe Coder — Premium",
+        subtitle: "Glassmorphism UI Redesign & State Migration",
+        icon: "fa-paint-brush",
+        description: "A professional-grade frontend take-home assignment for the Vibe Coder Intern role at Wobb. Fixed existing bugs, migrated state management from prop-drilling to Zustand with persistence, and overhauled the UI/UX to a premium standard with glassmorphism, Framer Motion animations, and full dark mode.",
+        techStack: ["TypeScript", "React", "Vite", "Tailwind CSS v4", "Zustand", "Framer Motion", "Sonner"],
+        features: [
+            "Bug fixes: case-sensitive search, engagement rate calculation error, unnecessary re-render elimination.",
+            "Full Zustand state migration with localStorage persistence for shortlisted profiles.",
+            "Glassmorphism design system with backdrop-blur, calibrated typography, and 8pt spacing grid.",
+            "Fluid enter/exit animations via Framer Motion on sidebar and tab transitions.",
+            "Full dark mode via CSS variables and Tailwind dark: variant with manual toggle.",
+            "Toast notifications via Sonner replacing generic browser alerts."
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/wobb-vibe-coder-premium",
+        thumbnailBg: "linear-gradient(135deg, #8b5cf6, #5b21b6)"
+    },
+    "resume-master-hub": {
+        title: "Resume Master Hub",
+        subtitle: "AI-Powered Resume Builder & Analyser",
+        icon: "fa-file-alt",
+        description: "A full-stack Resume Builder and Analyser web application built with React, Vite, TypeScript, and Supabase. Empowers users to create, format, and optimise resumes with AI-driven feedback and analytics, featuring a rich component library and real-time collaboration support.",
+        techStack: ["TypeScript", "React", "Vite", "Tailwind CSS", "Supabase", "shadcn/ui", "Vitest"],
+        features: [
+            "AI-powered resume analysis and optimisation suggestions.",
+            "Drag-and-drop resume section builder with live preview.",
+            "Supabase backend for authentication and persistent resume storage.",
+            "Built with shadcn/ui component library for a polished, accessible UI.",
+            "Full test suite using Vitest.",
+            "Export to PDF functionality."
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/resume-master-hub",
+        thumbnailBg: "linear-gradient(135deg, #ec4899, #be185d)"
+    },
     "support-ticket-system": {
         title: "Support Ticket System",
         subtitle: "Full-Stack LLM-Integrated Issue Tracker",
@@ -7,12 +96,12 @@ const projectsData = {
         techStack: ["Django", "Django REST Framework", "PostgreSQL", "React", "Vite", "Docker", "OpenAI API"],
         features: [
             "AI-driven automatic ticket categorization and prioritization.",
-            "Backend built with Django, DRF, and Postgres.",
+            "Backend built with Django, DRF, and PostgreSQL.",
             "Database-level constraints and high-efficiency stats aggregation.",
             "Modern, responsive React frontend powered by Vite.",
             "Full Docker and Docker Compose containerization."
         ],
-        liveLink: null, // Requires local docker deployment
+        liveLink: null,
         githubLink: "https://github.com/SathiKarthikeyaReddy/support-ticket-system",
         thumbnailBg: "linear-gradient(135deg, #10b981, #047857)"
     },
@@ -26,7 +115,8 @@ const projectsData = {
             "Pinned scroll flow mapping road movement to scroll position.",
             "Cinematic neon text reveal sequences.",
             "Stage-based story cards triggered dynamically via ScrollTrigger.",
-            "High-performance, buttery smooth 60fps animations."
+            "High-performance, buttery smooth 60fps animations.",
+            "Fully responsive design with mobile-optimised scroll behaviour."
         ],
         liveLink: null,
         githubLink: "https://github.com/SathiKarthikeyaReddy/car-scroll-animation-nextjs",
@@ -36,121 +126,17 @@ const projectsData = {
         title: "Gravity of Ideas",
         subtitle: "Interactive Storytelling Scroll",
         icon: "fa-apple-alt",
-        description: "A scroll-driven animated storytelling page depicting the precise moment Newton discovered gravity. Features a falling apple tracing a complex SVG bezier curve.",
+        description: "A scroll-driven animated storytelling page depicting the precise moment Newton discovered gravity. Features a falling apple tracing a complex SVG bezier curve path tied 1:1 to scroll position.",
         techStack: ["Next.js", "React", "GSAP 3", "MotionPathPlugin", "Tailwind CSS"],
         features: [
-            "Apple follows a precise MotionPath tied 1:1 to scroll.",
-            "Impact finale with screen shake and particle bursts.",
-            "Ambient looping tree sway and custom glow trails.",
-            "Progressive sky color shift based on scroll depth."
+            "Apple follows a precise MotionPath tied 1:1 to scroll position.",
+            "Impact finale with screen shake and particle burst effects.",
+            "Ambient looping tree sway and leaf drift animations.",
+            "Dynamic text reveals triggered by scroll milestones.",
+            "Responsive canvas rendering for all screen sizes."
         ],
         liveLink: null,
-        githubLink: "https://github.com/SathiKarthikeyaReddy/apple-scroll-animation",
-        thumbnailBg: "linear-gradient(135deg, #ef4444, #991b1b)"
-    },
-    "matrix": {
-        title: "Matrix Front-End",
-        subtitle: "UndoSchool Frontend Assignment",
-        icon: "fa-border-all",
-        description: "A responsive and strictly designed frontend assignment completed for UndoSchool, demonstrating exact design matching and structural HTML/CSS competency.",
-        techStack: ["HTML5", "CSS3", "JavaScript"],
-        features: [
-            "Pixel-perfect design replication.",
-            "Responsive layout scaling across devices.",
-            "Clean and maintainable code structure."
-        ],
-        liveLink: null,
-        githubLink: "https://github.com/SathiKarthikeyaReddy/matrix",
-        thumbnailBg: "linear-gradient(135deg, #8b5cf6, #5b21b6)"
-    },
-    "netflix-clone": {
-        title: "Netflix UI Clone",
-        subtitle: "Responsive Landing Page",
-        icon: "fa-tv",
-        description: "A responsive Netflix homepage built thoroughly with HTML, CSS, and precise flexbox layouts to ensure cross-device aesthetic compatibility.",
-        techStack: ["HTML", "CSS", "Flexbox"],
-        features: [
-            "Accurate replication of the Netflix landing page UI.",
-            "Fully responsive across mobile, tablet, and desktop views.",
-            "Hover effects and clean typography matching the original brand."
-        ],
-        liveLink: "https://karthikeya0609.ccbp.tech",
-        githubLink: null,
-        thumbnailBg: "linear-gradient(135deg, #e50914, #831010)"
-    },
-    "restaurant-page": {
-        title: "Restaurant Landing Page",
-        subtitle: "Modern Static Web Design",
-        icon: "fa-utensils",
-        description: "Created a modern static landing page with an aesthetic UI focusing on showcasing a culinary business attractively.",
-        techStack: ["HTML", "CSS", "JavaScript"],
-        features: [
-            "Aesthetic hero section with food imagery.",
-            "Menu and features highlight sections.",
-            "Responsive grid and flexbox alignment."
-        ],
-        liveLink: "https://fdmnchlndgpage.ccbp.tech",
-        githubLink: null,
-        thumbnailBg: "linear-gradient(135deg, #f59e0b, #b45309)"
-    },
-    "spotify-clone": {
-        title: "Spotify Open Page",
-        subtitle: "Music App Interface Replication",
-        icon: "fa-music",
-        description: "Developed a meticulous landing page replicating Spotify’s dark-themed UI with a focus on structural accuracy and usability.",
-        techStack: ["HTML", "CSS"],
-        features: [
-            "Dark theme UI pattern replication.",
-            "Sidebar and main content grid structuring.",
-            "Responsive audio card layouts."
-        ],
-        liveLink: "https://musicapp06.ccbp.tech",
-        githubLink: null,
-        thumbnailBg: "linear-gradient(135deg, #1db954, #1ed760)"
-    },
-    "real-estate": {
-        title: "Real Estate Landing Page",
-        subtitle: "Property Showcase Website",
-        icon: "fa-home",
-        description: "Designed and implemented an interactive real estate website frontend designed to list properties cleanly.",
-        techStack: ["HTML", "CSS"],
-        features: [
-            "Grid-based property listing interface.",
-            "Search and filter UI structural mockups.",
-            "Modern, trustworthy color palette."
-        ],
-        liveLink: "https://findhomes.ccbp.tech",
-        githubLink: null,
-        thumbnailBg: "linear-gradient(135deg, #3b82f6, #1d4ed8)"
-    },
-    "maltego-investigation": {
-        title: "Maltego Threat Investigation",
-        subtitle: "Cybersecurity Email Analysis",
-        icon: "fa-shield-alt",
-        description: "Analyzed complex email headers using the Maltego intelligence tool to detect phishing attempts, map network infrastructure, and isolate suspicious activity origins.",
-        techStack: ["Maltego", "Email Header Analysis", "OSINT"],
-        features: [
-            "Visual node-based mapping of email routing.",
-            "Identification of spoofed domains and phishing origins.",
-            "Extraction and correlation of IP metadata."
-        ],
-        liveLink: "https://www.linkedin.com/in/karthikeya-reddy-sathi",
-        githubLink: null,
-        thumbnailBg: "linear-gradient(135deg, #f43f5e, #be123c)"
-    },
-    "smart-notes": {
-        title: "Smart Notes App",
-        subtitle: "CRUD Web Application",
-        icon: "fa-sticky-note",
-        description: "A modern, responsive web-based note-taking application featuring full Create, Read, Update, and Delete (CRUD) operations mapped to local storage.",
-        techStack: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-        features: [
-            "Real-time note creation and deletion.",
-            "Persistent local storage ensuring data isn't lost on refresh.",
-            "Clean, colorful Bootstrap UI with intuitive interactions."
-        ],
-        liveLink: "https://uismart-notes.netlify.app/",
-        githubLink: "https://github.com/SathiKarthikeyaReddy/SmartNotes",
-        thumbnailBg: "linear-gradient(135deg, #eab308, #a16207)"
+        githubLink: "https://github.com/SathiKarthikeyaReddy/apple-scroll-animation-nextjs",
+        thumbnailBg: "linear-gradient(135deg, #f97316, #c2410c)"
     }
 };
