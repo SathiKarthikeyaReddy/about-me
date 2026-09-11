@@ -43,11 +43,24 @@ body[data-theme="dark"] {
     --bg-secondary: var(--bg-dark-secondary);
     --surface-color: var(--surface-dark);
     --surface-hover: var(--surface-dark-hover);
-    --text-color: var(--text-dark);
-    --text-muted: var(--text-muted-dark);
+    --text-color: #ffffff;
+    --text-muted: #cbd5e1;
     --border-color: var(--border-dark);
     --border-glow: var(--border-dark-glow);
     --shine: var(--glass-shine);
+
+    /* Bootstrap 5 Overrides */
+    --bs-body-color: #f8fafc;
+    --bs-body-bg: #040714;
+    --bs-card-color: #f8fafc;
+    --bs-card-bg: rgba(12, 18, 38, 0.75);
+    --bs-heading-color: #ffffff;
+    --bs-secondary-color: #cbd5e1;
+    --bs-tertiary-color: #94a3b8;
+    --bs-emphasis-color: #ffffff;
+    --bs-link-color: #38bdf8;
+    --bs-link-hover-color: #7dd3fc;
+    color: #f8fafc !important;
 }
 
 body[data-theme="light"] {
@@ -60,6 +73,43 @@ body[data-theme="light"] {
     --border-color: var(--border-light);
     --border-glow: var(--border-light-glow);
     --shine: var(--glass-shine-light);
+
+    --bs-body-color: #0f172a;
+    --bs-body-bg: #f8fafc;
+    --bs-card-color: #0f172a;
+    --bs-card-bg: rgba(255, 255, 255, 0.85);
+    --bs-heading-color: #0f172a;
+    --bs-secondary-color: #475569;
+    --bs-tertiary-color: #64748b;
+    --bs-emphasis-color: #0f172a;
+    color: #0f172a !important;
+}
+
+/* Explicit high-visibility rules for case study elements in dark theme */
+body[data-theme="dark"] .glass-panel,
+body[data-theme="dark"] .hero-glass-card {
+    color: #f8fafc !important;
+}
+
+body[data-theme="dark"] p,
+body[data-theme="dark"] li,
+body[data-theme="dark"] span,
+body[data-theme="dark"] .text-secondary-custom {
+    color: #f1f5f9;
+}
+
+body[data-theme="dark"] .text-muted,
+body[data-theme="dark"] .text-muted-custom {
+    color: #cbd5e1 !important;
+}
+
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6 {
+    color: #ffffff !important;
 }
 
 *, *::before, *::after {
