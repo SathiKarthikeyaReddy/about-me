@@ -1,81 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - Sathi Karthikeya Reddy</title>
+    <title>Project Case Study | Sathi Karthikeya Reddy</title>
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="project-details.css">
 </head>
+
 <body data-theme="dark">
 
-    <nav class="navbar navbar-expand-lg sticky-top custom-nav">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-                <i class="fas fa-arrow-left"></i> Back to Portfolio
+    <!-- Interactive 3D Background Canvas -->
+    <canvas id="bg-3d-canvas-detail"></canvas>
+    <div class="ambient-glow-mesh-detail"></div>
+
+    <!-- Mouse Tracking Spotlight -->
+    <div class="mouse-spotlight"></div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="detail-nav py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Main Portfolio</span>
             </a>
-            <button id="theme-toggle" class="btn btn-outline-light rounded-circle shadow-sm theme-btn">
-                <i class="fas fa-sun"></i>
-            </button>
+            <div class="d-flex align-items-center gap-3">
+                <span id="nav-category-badge" class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 font-mono d-none d-md-inline-block">
+                    Case Study
+                </span>
+                <button id="theme-toggle" class="btn btn-outline-secondary btn-sm rounded-circle p-2" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Dynamic Hero Section -->
-    <header id="project-hero" class="project-hero text-white text-center d-flex flex-column justify-content-center align-items-center">
-        <div class="container glass-panel p-5 rounded-4 hero-content">
-            <div class="icon-wrapper mb-4">
-                <i id="project-icon" class="fas fa-code fa-3x"></i>
+    <!-- Case Study Hero Header -->
+    <header class="detail-hero">
+        <div class="container">
+            <div class="hero-glass-card">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+                    <span id="detail-category" class="project-category-badge">Growth & AI</span>
+                    <span class="status-pill">
+                        <span class="status-indicator"></span>
+                        <span>Verified GitHub Architecture</span>
+                    </span>
+                </div>
+
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-2 col-md-3 text-center text-md-start">
+                        <div id="detail-icon-box" class="hero-icon-container mx-auto mx-md-0">
+                            <i id="detail-icon" class="fas fa-microchip"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-9 text-center text-md-start">
+                        <h1 id="detail-title" class="display-5 fw-bold mb-2">Loading Architecture...</h1>
+                        <p id="detail-subtitle" class="lead text-secondary-custom mb-4">Fetching verified technical specifications</p>
+                        <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3">
+                            <a id="btn-github-link" href="#" target="_blank" class="btn-cyber-primary">
+                                <i class="fab fa-github"></i> View GitHub Repository
+                            </a>
+                            <a id="btn-live-link" href="#" target="_blank" class="btn-cyber-outline d-none">
+                                <i class="fas fa-external-link-alt"></i> Live Interface
+                            </a>
+                            <a href="index.html#projects" class="btn-cyber-outline">
+                                <i class="fas fa-layer-group"></i> All Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 id="project-title" class="display-3 fw-bold mb-3">Loading...</h1>
-            <p id="project-subtitle" class="lead fs-4 opacity-75 mb-0">Please wait</p>
         </div>
     </header>
 
-    <main class="container py-5 mt-4">
-        <div class="row g-5">
-            <!-- Left Column: Details -->
+    <!-- Main Content & Case Study Details -->
+    <main class="container my-5 position-relative" style="z-index: 1;">
+        <div class="row g-4">
+            <!-- Left Column: Deep Architectural Analysis -->
             <div class="col-lg-8">
-                <section class="content-section glass-card p-4 p-md-5 rounded-4 mb-5">
-                    <h2 class="section-title mb-4"><i class="fas fa-align-left text-primary me-2"></i> About the Project</h2>
-                    <p id="project-description" class="fs-5 lh-lg text-muted-custom">
-                        Fetching project details...
+                <!-- Overview Section -->
+                <div class="glass-panel p-4 p-md-5 mb-4">
+                    <h2 class="glass-panel-title">
+                        <i class="fas fa-diagram-project text-cyan"></i>
+                        <span>System Architecture & Overview</span>
+                    </h2>
+                    <p id="detail-description" class="text-secondary-custom fs-5 lh-lg mb-0">
+                        Loading detailed architecture specification...
                     </p>
-                </section>
+                </div>
 
-                <section class="content-section glass-card p-4 p-md-5 rounded-4">
-                    <h2 class="section-title mb-4"><i class="fas fa-star text-warning me-2"></i> Key Features</h2>
-                    <ul id="project-features" class="feature-list fs-5 text-muted-custom">
-                        <!-- Injected via JS -->
-                    </ul>
-                </section>
+                <!-- Key Capabilities & Features -->
+                <div class="glass-panel p-4 p-md-5 mb-4">
+                    <h2 class="glass-panel-title">
+                        <i class="fas fa-bolt text-primary"></i>
+                        <span>Key Capabilities & Technical Highlights</span>
+                    </h2>
+                    <div id="detail-features-list">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Engineering Standards & Quality Assurance -->
+                <div class="glass-panel p-4 p-md-5">
+                    <h2 class="glass-panel-title">
+                        <i class="fas fa-shield-halved text-emerald"></i>
+                        <span>Engineering Standards & Verification</span>
+                    </h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-white bg-opacity-5 border border-secondary border-opacity-10">
+                                <h5 class="fs-6 fw-bold text-primary mb-1"><i class="fas fa-code-branch me-2"></i>Branch Management</h5>
+                                <p class="text-muted small mb-0">Continuous integration ready on main branch with modular decoupled components.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-white bg-opacity-5 border border-secondary border-opacity-10">
+                                <h5 class="fs-6 fw-bold text-cyan mb-1"><i class="fas fa-check-double me-2"></i>Tested & Validated</h5>
+                                <p class="text-muted small mb-0">Automated unit test coverage, rigorous mock synthesis, and deterministic state checks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Right Column: Meta & Links -->
+            <!-- Right Column: Sidebar Meta & Tech Stack -->
             <div class="col-lg-4">
-                <div class="sidebar-sticky">
-                    <div class="content-section glass-card p-4 rounded-4 mb-4">
-                        <h3 class="h4 mb-4 fw-semibold">Tech Stack</h3>
-                        <div id="project-tech-stack" class="d-flex flex-wrap gap-2">
-                            <!-- Injected via JS -->
+                <div class="sticky-sidebar">
+                    <!-- Tech Stack Panel -->
+                    <div class="glass-panel p-4 mb-4">
+                        <h3 class="glass-panel-title fs-5 mb-3">
+                            <i class="fas fa-layer-group text-primary"></i>
+                            <span>Technologies Used</span>
+                        </h3>
+                        <div id="detail-tech-stack" class="d-flex flex-wrap gap-2">
+                            <!-- Populated dynamically -->
                         </div>
                     </div>
 
-                    <div class="content-section glass-card p-4 rounded-4 text-center">
-                        <h3 class="h4 mb-4 fw-semibold">Links</h3>
-                        <div class="d-grid gap-3">
-                            <a id="btn-live" href="#" class="btn btn-primary btn-lg custom-btn d-none" target="_blank">
-                                <i class="fas fa-external-link-alt me-2"></i> View Live Site
-                            </a>
-                            <a id="btn-github" href="#" class="btn btn-dark btn-lg custom-btn d-none" target="_blank">
-                                <i class="fab fa-github me-2"></i> View Source Code
-                            </a>
+                    <!-- Repository Metadata Panel -->
+                    <div class="glass-panel p-4 mb-4">
+                        <h3 class="glass-panel-title fs-5 mb-3">
+                            <i class="fas fa-circle-info text-cyan"></i>
+                            <span>Repository Details</span>
+                        </h3>
+                        <ul class="list-unstyled text-secondary-custom small mb-0 d-flex flex-column gap-2 font-mono">
+                            <li class="d-flex justify-content-between pb-2 border-bottom border-secondary border-opacity-10">
+                                <span class="text-muted">Author:</span>
+                                <span class="text-primary fw-medium">Sathi Karthikeya Reddy</span>
+                            </li>
+                            <li class="d-flex justify-content-between pb-2 border-bottom border-secondary border-opacity-10">
+                                <span class="text-muted">Repository:</span>
+                                <span id="meta-repo-name" class="fw-medium text-truncate" style="max-width: 170px;">github.com</span>
+                            </li>
+                            <li class="d-flex justify-content-between pb-2 border-bottom border-secondary border-opacity-10">
+                                <span class="text-muted">Access:</span>
+                                <span class="badge bg-success bg-opacity-10 text-success">Public</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <span class="text-muted">Default Branch:</span>
+                                <span class="badge bg-secondary bg-opacity-20 text-white">main</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Explore Related Projects -->
+                    <div class="glass-panel p-4">
+                        <h3 class="glass-panel-title fs-5 mb-3">
+                            <i class="fas fa-compass text-violet"></i>
+                            <span>Explore Other Systems</span>
+                        </h3>
+                        <div id="related-projects-container">
+                            <!-- Populated dynamically -->
                         </div>
                     </div>
                 </div>
@@ -83,71 +192,226 @@
         </div>
     </main>
 
-    <footer class="text-center p-4 mt-5">
-        <p class="mb-0 text-muted-custom">&copy; 2024 Sathi Karthikeya Reddy. All Rights Reserved.</p>
+    <footer class="text-center py-4 border-top border-secondary border-opacity-10 position-relative" style="z-index: 1;">
+        <p class="text-muted small mb-0">&copy; 2026 Sathi Karthikeya Reddy. Portfolio Case Study Architecture.</p>
     </footer>
 
-    <!-- Data & Scripts -->
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Verified Projects Data -->
     <script src="projects-data.js"></script>
+
+    <!-- Detail Page 3D Animation & Data Injection Logic -->
     <script>
+        // Theme Persistence
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = themeToggle ? themeToggle.querySelector('i') : null;
+
+        function applyTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (toggleIcon) {
+                if (theme === 'dark') {
+                    toggleIcon.classList.remove('fa-sun');
+                    toggleIcon.classList.add('fa-moon');
+                } else {
+                    toggleIcon.classList.remove('fa-moon');
+                    toggleIcon.classList.add('fa-sun');
+                }
+            }
+        }
+        applyTheme(localStorage.getItem('theme') || 'dark');
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const current = document.body.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // Three.js Background for Details View
+        function initDetail3DBackground() {
+            const canvas = document.getElementById('bg-3d-canvas-detail');
+            if (!canvas || typeof THREE === 'undefined') return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 45;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Floating Polyhedron Geometry representing system architectural nodes
+            const octahedronGeo = new THREE.OctahedronGeometry(9, 1);
+            const octahedronMat = new THREE.MeshBasicMaterial({
+                color: 0x6366f1,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.22
+            });
+            const octahedronMesh = new THREE.Mesh(octahedronGeo, octahedronMat);
+            octahedronMesh.position.set(24, 10, -5);
+            scene.add(octahedronMesh);
+
+            const torusGeo = new THREE.TorusGeometry(12, 0.6, 8, 30);
+            const torusMat = new THREE.MeshBasicMaterial({
+                color: 0x00f2fe,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.18
+            });
+            const torusMesh = new THREE.Mesh(torusGeo, torusMat);
+            torusMesh.position.set(-25, -12, -10);
+            scene.add(torusMesh);
+
+            // Background Star Constellation
+            const particleCount = 600;
+            const starGeo = new THREE.BufferGeometry();
+            const starPositions = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                starPositions[i] = (Math.random() - 0.5) * 120;
+                starPositions[i + 1] = (Math.random() - 0.5) * 120;
+                starPositions[i + 2] = (Math.random() - 0.5) * 80;
+            }
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+            const starMat = new THREE.PointsMaterial({
+                size: 1.0,
+                color: 0x818cf8,
+                transparent: true,
+                opacity: 0.45
+            });
+            const stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                octahedronMesh.rotation.x += 0.003;
+                octahedronMesh.rotation.y += 0.005;
+                torusMesh.rotation.x += 0.004;
+                torusMesh.rotation.z += 0.003;
+                stars.rotation.y += 0.0006;
+
+                camera.position.x += (mouseX * 4 - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY * 4 - camera.position.y) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        // Spotlight Mouse Effect
+        const spotlight = document.querySelector('.mouse-spotlight');
+        if (spotlight) {
+            window.addEventListener('mousemove', (e) => {
+                spotlight.style.left = `${e.clientX}px`;
+                spotlight.style.top = `${e.clientY}px`;
+            });
+        }
+
+        // Populate Project Data
         document.addEventListener('DOMContentLoaded', () => {
+            initDetail3DBackground();
+
             const urlParams = new URLSearchParams(window.location.search);
             const projectId = urlParams.get('id');
-            const project = projectsData[projectId];
 
-            if (!project) {
-                document.getElementById('project-title').textContent = "Project Not Found";
-                document.getElementById('project-subtitle').textContent = "Return to portfolio";
+            if (!projectId || typeof projectsData === 'undefined' || !projectsData[projectId]) {
+                document.getElementById('detail-title').textContent = "Architecture Not Found";
+                document.getElementById('detail-subtitle').textContent = "The requested repository could not be located.";
+                document.getElementById('detail-description').textContent = "Please return to the main portfolio and select a valid project case study.";
                 return;
             }
 
-            // Populate UI
-            document.title = `${project.title} - Sathi Karthikeya Reddy`;
-            document.getElementById('project-hero').style.background = project.thumbnailBg;
-            document.getElementById('project-icon').className = `fas ${project.icon} fa-3x`;
-            document.getElementById('project-title').textContent = project.title;
-            document.getElementById('project-subtitle').textContent = project.subtitle;
-            document.getElementById('project-description').textContent = project.description;
+            const p = projectsData[projectId];
+            document.title = `${p.title} | Technical Case Study - Sathi Karthikeya Reddy`;
 
-            // Features
-            const featuresList = document.getElementById('project-features');
-            project.features.forEach(feat => {
-                const li = document.createElement('li');
-                li.innerHTML = `<i class="fas fa-check-circle text-success me-2 mt-1"></i> <span>${feat}</span>`;
-                li.className = "d-flex align-items-start mb-3";
-                featuresList.appendChild(li);
-            });
+            // Hero
+            document.getElementById('detail-title').textContent = p.title;
+            document.getElementById('detail-subtitle').textContent = p.subtitle;
+            document.getElementById('detail-category').textContent = p.category;
+            document.getElementById('nav-category-badge').textContent = p.category;
+            document.getElementById('detail-icon').className = `fas ${p.icon}`;
+            document.getElementById('detail-icon-box').style.background = p.thumbnailBg;
 
-            // Tech Stack
-            const techContainer = document.getElementById('project-tech-stack');
-            project.techStack.forEach(tech => {
-                const span = document.createElement('span');
-                span.className = "badge tech-badge px-3 py-2 fs-6 fw-normal";
-                span.textContent = tech;
-                techContainer.appendChild(span);
-            });
+            // GitHub & Live Demo
+            const btnGh = document.getElementById('btn-github-link');
+            if (p.githubLink) {
+                btnGh.href = p.githubLink;
+                const repoName = p.githubLink.split('/').pop();
+                document.getElementById('meta-repo-name').textContent = repoName || 'Repository';
+            } else {
+                btnGh.classList.add('d-none');
+            }
 
-            // Links
-            const btnLive = document.getElementById('btn-live');
-            if (project.liveLink) {
-                btnLive.href = project.liveLink;
+            const btnLive = document.getElementById('btn-live-link');
+            if (p.liveLink) {
+                btnLive.href = p.liveLink;
                 btnLive.classList.remove('d-none');
             }
 
-            const btnGithub = document.getElementById('btn-github');
-            if (project.githubLink) {
-                btnGithub.href = project.githubLink;
-                btnGithub.classList.remove('d-none');
-            }
+            // Description
+            document.getElementById('detail-description').textContent = p.description;
 
-            // Reveal Animation
-            setTimeout(() => {
-                document.querySelectorAll('.content-section').forEach((el, index) => {
-                    setTimeout(() => el.classList.add('visible'), index * 150);
-                });
-            }, 100);
+            // Features List
+            const featuresContainer = document.getElementById('detail-features-list');
+            featuresContainer.innerHTML = '';
+            p.features.forEach(feat => {
+                const item = document.createElement('div');
+                item.className = 'feature-item';
+                item.innerHTML = `
+                    <i class="fas fa-circle-check feature-icon"></i>
+                    <span class="text-secondary-custom fs-6">${feat}</span>
+                `;
+                featuresContainer.appendChild(item);
+            });
+
+            // Tech Stack
+            const techContainer = document.getElementById('detail-tech-stack');
+            techContainer.innerHTML = '';
+            p.techStack.forEach(t => {
+                const pill = document.createElement('span');
+                pill.className = 'tech-badge-detail';
+                pill.innerHTML = `<i class="fas fa-microchip text-cyan opacity-75"></i> ${t}`;
+                techContainer.appendChild(pill);
+            });
+
+            // Related Projects (3 suggestions from different or same categories)
+            const relatedContainer = document.getElementById('related-projects-container');
+            relatedContainer.innerHTML = '';
+            const allKeys = Object.keys(projectsData).filter(k => k !== projectId);
+            const relatedKeys = allKeys.slice(0, 3);
+
+            relatedKeys.forEach(k => {
+                const rel = projectsData[k];
+                const card = document.createElement('a');
+                card.href = `project-details.html?id=${rel.id}`;
+                card.className = 'related-card';
+                card.innerHTML = `
+                    <div class="related-icon" style="background: ${rel.thumbnailBg};">
+                        <i class="fas ${rel.icon}"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="fw-bold small text-truncate">${rel.title}</div>
+                        <div class="text-muted" style="font-size: 0.75rem;">${rel.category}</div>
+                    </div>
+                `;
+                relatedContainer.appendChild(card);
+            });
         });
     </script>
-    <script src="script.js"></script>
 </body>
+
 </html>
