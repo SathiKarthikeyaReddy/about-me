@@ -4,6 +4,34 @@
  */
 
 const projectsData = {
+    "emplay-ai-engineering-suite": {
+        id: "emplay-ai-engineering-suite",
+        title: "Emplay AI/ML & LLM Engineering Suite",
+        subtitle: "Autonomous RAG, AST-Guarded SQL Agent & MLOps Pipeline",
+        category: "Growth & AI",
+        icon: "fa-brain",
+        summary: "Production-grade enterprise AI/ML monorepo uniting a hybrid ChromaDB/BM25 RAG engine with Reciprocal Rank Fusion, an AST-guarded Text-to-SQL agent, and MLflow-tracked ticket triage with 26 passing tests.",
+        description: "An enterprise-scale AI/ML and LLM engineering monorepo architected for mission-critical enterprise intelligence. Features three production microservices: a hybrid dense-lexical knowledge engine with cross-encoder re-ranking, a deterministic AST-guarded Text-to-SQL business intelligence agent with dynamic schema introspection, and an end-to-end MLOps support ticket triage pipeline backed by MLflow experiment tracking and statistical Z-score outlier guardrails.",
+        techStack: ["Python 3.10+", "FastAPI", "ChromaDB", "Rank-BM25", "sqlglot AST", "MLflow", "Scikit-Learn", "SQLite", "PyTest"],
+        features: [
+            "Hybrid Knowledge Intelligence Engine blending dense ChromaDB vectors with sparse BM25 via Reciprocal Rank Fusion (RRF, k=60) to eliminate domain acronym hallucination.",
+            "Contextual cross-encoder re-ranking pass with strict grounding prompts enforcing explicit citation attribution [Source: document.md, Section 2].",
+            "Deterministic AST security guard using sqlglot to strictly enforce single-root SELECT execution and block multi-statement and schema mutation injections.",
+            "Dynamic relational schema extractor automatically introspecting SQLite tables, foreign keys, and 3 representative sample rows for LLM prompt context.",
+            "NLP Customer Support Ticket Triage pipeline synthesizing 1,500+ tickets across 5 enterprise categories with MLflow experiment tracking.",
+            "Statistical Z-score outlier detector (Z > 3.0) intercepting adversarial or out-of-distribution prompts before consuming inference compute.",
+            "Token counter and cost governance middleware estimating real-time per-request compute footprint and API latency.",
+            "100% automated test pass rate across 26 comprehensive pytest cases covering edge cases, AST security, and MLOps logging."
+        ],
+        stats: [
+            { label: "Unit Tests", value: "26 / 26 Passing" },
+            { label: "Engines", value: "3 Microservices" },
+            { label: "Governance", value: "AST + MLflow" }
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/emplay-ai-engineering-suite",
+        thumbnailBg: "linear-gradient(135deg, #6366f1, #06b6d4)"
+    },
     "quantacus-growth-solutions": {
         id: "quantacus-growth-solutions",
         title: "Quantacus Growth Solutions Monorepo",
@@ -29,6 +57,32 @@ const projectsData = {
         liveLink: null,
         githubLink: "https://github.com/SathiKarthikeyaReddy/quantacus-growth-solutions",
         thumbnailBg: "linear-gradient(135deg, #4f46e5, #06b6d4)"
+    },
+    "OmniRoute": {
+        id: "OmniRoute",
+        title: "OmniRoute — The Free AI Gateway",
+        subtitle: "Universal AI Router, 264+ Providers & Compression Engine",
+        category: "Full Stack & Systems",
+        icon: "fa-route",
+        summary: "Universal AI gateway connecting code assistants (Claude Code, Cursor, Cline, Copilot, Antigravity) to 264+ providers with stacked RTK+Caveman compression saving 15–95% tokens.",
+        description: "A high-performance universal AI gateway providing a single unified OpenAI-compatible endpoint that routes developer traffic across 264+ AI providers (including 90+ permanently free tiers). Implements stacked RTK and Caveman prompt compression algorithms reducing token consumption by up to 95%, smart automatic fallback cascades, and a real-time React Flow visual graph studio.",
+        techStack: ["TypeScript", "Node.js", "Next.js", "React Flow", "WebSockets", "TPROXY", "Docker", "SSE Streaming"],
+        features: [
+            "Unified proxy endpoint aggregating 264+ AI providers and 90+ free tiers (~1.6B documented free tokens/month).",
+            "Stacked RTK + Caveman prompt compression algorithms achieving 15% to 95% token savings without losing context.",
+            "Zero-config compatibility with Claude Code, Cursor, Cline, Codex, Copilot, and Google Antigravity.",
+            "Visual Compression Studio and Dynamic Routing/Combo Studio built with React Flow node graphs.",
+            "Low-latency Traffic Inspector with Server-Sent Events (SSE) merge, conversation normalization, and secret masking.",
+            "Transparent TPROXY socket routing and crash-safe MITM proxy teardown mechanisms."
+        ],
+        stats: [
+            { label: "AI Providers", value: "264 Supported" },
+            { label: "Token Savings", value: "Up to 95%" },
+            { label: "Free Tokens/Mo", value: "~1.6B Available" }
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/OmniRoute",
+        thumbnailBg: "linear-gradient(135deg, #6c5ce7, #00b894)"
     },
     "tessera-flow": {
         id: "tessera-flow",
@@ -130,6 +184,31 @@ const projectsData = {
         liveLink: null,
         githubLink: "https://github.com/SathiKarthikeyaReddy/sql-bi-agent",
         thumbnailBg: "linear-gradient(135deg, #10b981, #059669)"
+    },
+    "sql-bi-reporter": {
+        id: "sql-bi-reporter",
+        title: "SQL Business Intelligence Reporter",
+        subtitle: "Conversational Text-to-SQL & Automated Executive Reporting",
+        category: "Full Stack & Systems",
+        icon: "fa-database",
+        summary: "Self-contained business intelligence platform translating plain English queries into safe SQL, executing against SQLite, and generating conversational summaries via Google Gemini.",
+        description: "A full-stack business intelligence application empowering non-technical stakeholders to query realistic enterprise datasets (sales, orders, expenses) using natural language. Grounded in a pre-seeded SQLite database, queries are validated against strict SQL allowlists before execution, and results are transformed into conversational executive summaries.",
+        techStack: ["React 18", "Vite", "Python 3.10+", "FastAPI", "SQLite", "Google Gemini API", "CSS3"],
+        features: [
+            "Natural language to SQL translation converting colloquial business inquiries into structured database queries.",
+            "Strict allowlist validation and schema grounding permitting only SELECT operations and blocking mutations.",
+            "AI-driven conversational executive summaries explaining tabular results in plain business terminology.",
+            "Persistent query history and execution telemetry logging user prompts, SQL, and latency across sessions.",
+            "Dual-mode architecture: live Gemini API generation paired with deterministic offline fallback execution."
+        ],
+        stats: [
+            { label: "Frontend", value: "React 18 + Vite" },
+            { label: "Backend", value: "FastAPI + SQLite" },
+            { label: "AI Model", value: "Gemini API" }
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/sql-bi-reporter",
+        thumbnailBg: "linear-gradient(135deg, #0ea5e9, #0284c7)"
     },
     "custom-employee-portal": {
         id: "custom-employee-portal",
@@ -297,6 +376,30 @@ const projectsData = {
         liveLink: null,
         githubLink: "https://github.com/SathiKarthikeyaReddy/apple-scroll-animation",
         thumbnailBg: "linear-gradient(135deg, #ef4444, #991b1b)"
+    },
+    "static_website": {
+        id: "static_website",
+        title: "Modern Responsive Static Web Experience",
+        subtitle: "Vanilla HTML5, CSS3 Grid & Dynamic Interactivity",
+        category: "Interactive & UI",
+        icon: "fa-globe",
+        summary: "Clean, zero-dependency responsive web project demonstrating semantic HTML5 structure, modern CSS grid and flexbox layouts, and vanilla JavaScript DOM interactivity.",
+        description: "A lightweight, zero-dependency responsive static web experience built with pure vanilla HTML5, CSS3, and JavaScript. Designed as a showcase of fundamental frontend engineering principles, featuring fluid grid scaling, accessible semantic markup, and clean DOM manipulation without external framework overhead.",
+        techStack: ["HTML5", "CSS3", "JavaScript", "Flexbox", "CSS Grid"],
+        features: [
+            "Zero-dependency pure vanilla architecture delivering lightning-fast sub-second initial load times.",
+            "Mobile-first responsive layout utilizing CSS Grid and Flexbox for fluid scaling across all screen sizes.",
+            "Strict semantic HTML5 markup following W3C accessibility and SEO best practices.",
+            "Interactive client-side components with clean, modular vanilla JavaScript event handling."
+        ],
+        stats: [
+            { label: "Dependencies", value: "Zero (Pure Vanilla)" },
+            { label: "Layout", value: "CSS Grid & Flexbox" },
+            { label: "Standard", value: "Semantic HTML5" }
+        ],
+        liveLink: null,
+        githubLink: "https://github.com/SathiKarthikeyaReddy/static_website",
+        thumbnailBg: "linear-gradient(135deg, #f97316, #ea580c)"
     },
     "SmartNotes": {
         id: "SmartNotes",
