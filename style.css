@@ -177,6 +177,20 @@ code, pre, .font-mono {
     font-family: 'JetBrains Mono', monospace;
 }
 
+/* 3D Cyberpunk Neon Scroll Progress Bar */
+#scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3.5px;
+    background: linear-gradient(90deg, #00f2fe, #6366f1, #a855f7);
+    box-shadow: 0 0 14px rgba(0, 242, 254, 0.8), 0 0 28px rgba(99, 102, 241, 0.5);
+    z-index: 10000;
+    pointer-events: none;
+    transition: width 0.08s ease-out;
+}
+
 /* 3D Canvas Background */
 #bg-3d-canvas {
     position: fixed;
@@ -525,6 +539,9 @@ body[data-theme="light"] .hero-name-interactive {
     color: inherit;
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+    will-change: transform;
 }
 
 .project-card::before {
@@ -537,9 +554,33 @@ body[data-theme="light"] .hero-name-interactive {
     background: linear-gradient(90deg, var(--cyan), var(--primary), var(--violet));
     opacity: 0;
     transition: opacity var(--transition-snappy);
+    z-index: 6;
 }
 
 .project-card:hover::before {
+    opacity: 1;
+}
+
+/* Dynamic Specular Glass Sheen Overlay */
+.card-sheen {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle 280px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.16),
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+    mix-blend-mode: overlay;
+}
+
+.project-card:hover .card-sheen,
+.skill-card:hover .card-sheen,
+.glass-card:hover .card-sheen {
     opacity: 1;
 }
 
@@ -554,6 +595,12 @@ body[data-theme="light"] .hero-name-interactive {
     font-size: 1.25rem;
     margin-bottom: 1.25rem;
     box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.3);
+    transform: translateZ(36px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-icon-wrapper {
+    transform: translateZ(48px) scale(1.08);
 }
 
 .project-category-badge {
@@ -568,6 +615,8 @@ body[data-theme="light"] .hero-name-interactive {
     color: #818cf8;
     display: inline-block;
     margin-bottom: 0.75rem;
+    transform: translateZ(26px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card-title {
@@ -575,6 +624,8 @@ body[data-theme="light"] .hero-name-interactive {
     font-weight: 700;
     margin-bottom: 0.35rem;
     color: var(--text-color);
+    transform: translateZ(24px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card-subtitle {
@@ -582,6 +633,8 @@ body[data-theme="light"] .hero-name-interactive {
     color: var(--cyan);
     font-weight: 600;
     margin-bottom: 0.85rem;
+    transform: translateZ(20px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card-desc {
@@ -590,6 +643,7 @@ body[data-theme="light"] .hero-name-interactive {
     line-height: 1.55;
     margin-bottom: 1.25rem;
     flex-grow: 1;
+    transform: translateZ(14px);
 }
 
 .project-tech-pills {
@@ -597,6 +651,8 @@ body[data-theme="light"] .hero-name-interactive {
     flex-wrap: wrap;
     gap: 0.35rem;
     margin-bottom: 1.25rem;
+    transform: translateZ(22px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tech-pill {
@@ -616,6 +672,8 @@ body[data-theme="light"] .hero-name-interactive {
     border-top: 1px solid var(--border-color);
     padding-top: 1rem;
     margin-top: auto;
+    transform: translateZ(28px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-action-link {
@@ -657,9 +715,107 @@ body[data-theme="light"] .hero-name-interactive {
 
 .tech-badge:hover {
     border-color: var(--primary);
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(99, 102, 241, 0.14);
     color: #818cf8;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+.tech-badge.highlight-pill {
+    background: rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.35);
+    color: #c7d2fe;
+    font-weight: 600;
+}
+
+body[data-theme="light"] .tech-badge.highlight-pill {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.25);
+    color: #4338ca;
+}
+
+/* 3D Skill Pillars Custom Styling */
+.skill-card {
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.65rem !important;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+}
+
+.skill-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    transform: translateZ(32px);
+    box-shadow: 0 8px 18px -4px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-card:hover .skill-icon-wrapper {
+    transform: translateZ(42px) scale(1.08);
+}
+
+.skill-icon-ai {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.skill-icon-systems {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+}
+
+.skill-icon-ui {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+}
+
+.skill-icon-devops {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.skill-category-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    transform: translateZ(24px);
+    font-weight: 600;
+}
+
+.badge-ai {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-systems {
+    background: rgba(6, 182, 212, 0.15);
+    color: #22d3ee;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.badge-ui {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.badge-devops {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.skill-card:hover {
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.65), 0 0 25px -5px var(--primary-glow);
 }
 
 /* Competencies Floating Cards */
@@ -742,16 +898,100 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Stagger & Intersection Reveal Animations */
+/* 3D Circular HUD Back to Top Button */
+.back-to-top-hud {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--surface-color);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.85);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+.back-to-top-hud.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top-hud:hover {
+    transform: translateY(-4px) scale(1.08);
+    border-color: var(--cyan);
+    box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 3;
+}
+
+body[data-theme="light"] .progress-ring-bg {
+    stroke: rgba(0, 0, 0, 0.08);
+}
+
+.progress-ring-circle {
+    fill: none;
+    stroke: var(--cyan);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 138.23; /* 2 * PI * 22 */
+    stroke-dashoffset: 138.23;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.hud-arrow {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: transform 0.25s ease, color 0.25s ease;
+    z-index: 2;
+}
+
+.back-to-top-hud:hover .hud-arrow {
+    transform: translateY(-3px);
+    color: var(--cyan);
+}
+
+/* 3D Physical Scroll-Velocity Pitch */
+.scroll-pitch-container {
+    will-change: transform;
+    transform-style: preserve-3d;
+    transform: perspective(1200px) rotateX(var(--scroll-pitch, 0deg));
+    transition: transform 0.12s ease-out;
+}
+
+/* Enhanced 3D Stagger & Intersection Reveal Animations */
 .stagger-child {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: perspective(1000px) rotateX(10deg) translateY(24px) translateZ(-25px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .stagger-child.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: perspective(1000px) rotateX(0deg) translateY(0) translateZ(0);
 }
 
 /* Responsive adjustments */

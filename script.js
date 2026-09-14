@@ -146,6 +146,8 @@ function init3DBackground() {
     let targetX = 0;
     let targetY = 0;
     let scrollY = window.scrollY;
+    let lastScrollY = window.scrollY;
+    let scrollVelocity = 0;
 
     window.addEventListener('mousemove', (e) => {
         mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -154,7 +156,7 @@ function init3DBackground() {
 
     window.addEventListener('scroll', () => {
         scrollY = window.scrollY;
-    });
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -174,7 +176,7 @@ function init3DBackground() {
         }
     };
 
-    // Animation Render Loop
+    // Animation Render Loop with Dynamic 3D Camera Flight
     function animate() {
         requestAnimationFrame(animate);
 
@@ -182,23 +184,37 @@ function init3DBackground() {
         targetX += (mouseX - targetX) * 0.05;
         targetY += (mouseY - targetY) * 0.05;
 
-        // Rotate particles and wireframes
-        particles.rotation.y += 0.0006;
+        // Smooth scroll velocity tracking
+        const delta = scrollY - lastScrollY;
+        lastScrollY = scrollY;
+        scrollVelocity += (delta - scrollVelocity) * 0.12;
+
+        const speedFactor = Math.abs(scrollVelocity) * 0.0008;
+
+        // Rotate particles and wireframes with velocity boosts
+        particles.rotation.y += 0.0006 + speedFactor * 0.6;
         particles.rotation.x += 0.0003;
 
-        icosahedron.rotation.x += 0.005;
-        icosahedron.rotation.y += 0.007;
+        icosahedron.rotation.x += 0.005 + speedFactor;
+        icosahedron.rotation.y += 0.007 + speedFactor;
 
-        torusKnot.rotation.x += 0.004;
-        torusKnot.rotation.z += 0.006;
+        torusKnot.rotation.x += 0.004 + speedFactor;
+        torusKnot.rotation.z += 0.006 + speedFactor;
 
-        octahedron.rotation.y += 0.008;
+        octahedron.rotation.y += 0.008 + speedFactor;
 
-        // Multilayer parallax shift responding to scroll position
-        const scrollFactor = scrollY * 0.008;
-        camera.position.x = targetX * 6;
-        camera.position.y = targetY * 4 - scrollFactor * 0.4;
-        camera.rotation.z = targetX * 0.02;
+        // 3D Camera Travel & Starfield Tunneling
+        const maxScroll = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+        const scrollFraction = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+
+        // Camera flies forward along Z and shifts subtly on Y
+        const targetCamZ = 40 - (scrollFraction * 14);
+        camera.position.z += (targetCamZ - camera.position.z) * 0.08;
+
+        camera.position.x = targetX * 6.5;
+        camera.position.y = targetY * 4 - (scrollY * 0.005);
+        camera.rotation.z = targetX * 0.025 + (scrollVelocity * 0.0004);
+        camera.rotation.x = -targetY * 0.018 - (scrollVelocity * 0.0003);
 
         renderer.render(scene, camera);
     }
@@ -230,6 +246,7 @@ function renderProjects(filterCategory = 'all') {
 
         col.innerHTML = `
             <div class="glass-card project-card tilt-effect" onclick="openProjectInNewPage('${p.id}')">
+                <div class="card-sheen"></div>
                 <div class="d-flex align-items-center justify-content-between mb-2">
                     <div class="project-icon-wrapper" style="background: ${p.thumbnailBg};">
                         <i class="fas ${p.icon}"></i>
@@ -255,7 +272,7 @@ function renderProjects(filterCategory = 'all') {
         grid.appendChild(col);
     });
 
-    // Rebind tilt listeners to newly created cards
+    // Rebind tilt & specular sheen listeners to newly created cards
     initTiltEffect();
 }
 
@@ -285,7 +302,7 @@ function initFilterControls() {
 
 
 // =========================================================================
-// 5. Interactive Mouse Spotlight & 3D Tilt Mechanics
+// 5. Interactive Mouse Spotlight & 3D Tilt Mechanics with Specular Sheen
 // =========================================================================
 function initSpotlight() {
     const spotlight = document.querySelector('.mouse-spotlight');
@@ -300,6 +317,13 @@ function initSpotlight() {
 function initTiltEffect() {
     const tiltElements = document.querySelectorAll('.tilt-effect');
     tiltElements.forEach(el => {
+        // Ensure dynamic specular sheen element exists
+        if (!el.querySelector('.card-sheen')) {
+            const sheen = document.createElement('div');
+            sheen.className = 'card-sheen';
+            el.appendChild(sheen);
+        }
+
         el.addEventListener('mousemove', (e) => {
             const rect = el.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -308,15 +332,20 @@ function initTiltEffect() {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            const tiltX = ((y - centerY) / centerY) * -8;
-            const tiltY = ((x - centerX) / centerX) * 8;
+            const tiltX = ((y - centerY) / centerY) * -10;
+            const tiltY = ((x - centerX) / centerX) * 10;
 
-            el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+            const mouseXPercent = ((x / rect.width) * 100).toFixed(1);
+            const mouseYPercent = ((y / rect.height) * 100).toFixed(1);
+
+            el.style.setProperty('--mouse-x', `${mouseXPercent}%`);
+            el.style.setProperty('--mouse-y', `${mouseYPercent}%`);
+            el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
         });
 
         el.addEventListener('mouseleave', () => {
             el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-            el.style.transition = 'transform 0.4s ease';
+            el.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
         });
 
         el.addEventListener('mouseenter', () => {
@@ -327,7 +356,82 @@ function initTiltEffect() {
 
 
 // =========================================================================
-// 6. Intersection Observer Scroll Reveals
+// 6. Cyber Neon Scroll Progress & Circular 3D Back-to-Top HUD
+// =========================================================================
+function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const backToTop = document.getElementById('back-to-top');
+    const circle = backToTop ? backToTop.querySelector('.progress-ring-circle') : null;
+    const circumference = 2 * Math.PI * 22; // ~138.23
+
+    function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+
+        if (progressBar) {
+            progressBar.style.width = `${progress * 100}%`;
+        }
+
+        if (circle) {
+            const offset = circumference - (progress * circumference);
+            circle.style.strokeDashoffset = offset;
+        }
+
+        if (backToTop) {
+            if (scrollTop > 260) {
+                backToTop.classList.add('is-active');
+            } else {
+                backToTop.classList.remove('is-active');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+
+// =========================================================================
+// 7. Scroll Velocity Physics & 3D Pitch Engine
+// =========================================================================
+function initScrollVelocityPhysics() {
+    let lastY = window.scrollY;
+    let smoothPitch = 0;
+
+    function loop() {
+        const currentY = window.scrollY;
+        const delta = currentY - lastY;
+        lastY = currentY;
+
+        // Subtle 3D dynamic pitch clamped between -2.5 and +2.5 degrees
+        const targetPitch = Math.max(Math.min(delta * 0.06, 2.5), -2.5);
+        smoothPitch += (targetPitch - smoothPitch) * 0.12;
+
+        if (Math.abs(smoothPitch) > 0.01) {
+            document.documentElement.style.setProperty('--scroll-pitch', `${smoothPitch.toFixed(2)}deg`);
+        } else {
+            document.documentElement.style.setProperty('--scroll-pitch', `0deg`);
+        }
+
+        requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+}
+
+
+// =========================================================================
+// 8. Intersection Observer 3D Scroll Reveals
 // =========================================================================
 function initScrollObserver() {
     const animatedSections = document.querySelectorAll('.animated-section');
@@ -339,19 +443,19 @@ function initScrollObserver() {
                 children.forEach((child, i) => {
                     setTimeout(() => {
                         child.classList.add('is-visible');
-                    }, i * 100);
+                    }, i * 75);
                 });
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     animatedSections.forEach(sec => observer.observe(sec));
 }
 
 
 // =========================================================================
-// 7. Lifecycle Initialization
+// 9. Lifecycle Initialization
 // =========================================================================
 document.addEventListener('DOMContentLoaded', () => {
     init3DBackground();
@@ -359,5 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilterControls();
     initSpotlight();
     initTiltEffect();
+    initScrollProgress();
+    initScrollVelocityPhysics();
     initScrollObserver();
 });
